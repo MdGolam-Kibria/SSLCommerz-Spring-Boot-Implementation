@@ -7,8 +7,8 @@
 <body>
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
+        <div class="col-md-8">
+            <div class="card border-warning shadow-lg">
                 <div class="card-body text-center">
                     <div class="text-warning mb-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
@@ -17,7 +17,17 @@
                     </div>
                     <h3 class="card-title">Payment Cancelled</h3>
                     <p class="card-text">You have cancelled the payment process.</p>
-                    <a href="/" class="btn btn-primary">Back to Home</a>
+
+                    <table class="table table-bordered mt-3">
+                        <tbody>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <td th:text="${tranId}">N/A</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <a href="/" class="btn btn-warning mt-3">Back to Home</a>
                 </div>
             </div>
         </div>
