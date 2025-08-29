@@ -7,8 +7,8 @@
 <body>
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
+        <div class="col-md-8">
+            <div class="card border-danger shadow-lg">
                 <div class="card-body text-center">
                     <div class="text-danger mb-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
@@ -16,8 +16,22 @@
                         </svg>
                     </div>
                     <h3 class="card-title">Payment Failed!</h3>
-                    <p class="card-text">There was an issue processing your payment. Please try again.</p>
-                    <a href="/" class="btn btn-primary">Back to Home</a>
+                    <p class="card-text">Unfortunately, your payment could not be processed.</p>
+
+                    <table class="table table-bordered mt-3">
+                        <tbody>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <td th:text="${tranId}">N/A</td>
+                        </tr>
+                        <tr>
+                            <th>Reason</th>
+                            <td th:text="${failedReason}">Unknown error</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <a href="/" class="btn btn-danger mt-3">Back to Home</a>
                 </div>
             </div>
         </div>

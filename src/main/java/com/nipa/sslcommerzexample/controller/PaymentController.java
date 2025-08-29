@@ -5,6 +5,7 @@ import com.nipa.sslcommerzexample.dto.PaymentResponse;
 import com.nipa.sslcommerzexample.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -38,17 +39,45 @@ public class PaymentController {
     }
 
     @PostMapping("/payment/success")
-    public String paymentSuccess() {
-        return "success";
+    public String paymentSuccess(@RequestParam Map<String, String> params, Model model) {
+        // Example fields SSLCommerz sends
+        String tranId = params.get("tran_id");          // Transaction ID
+        String amount = params.get("amount");           // Paid amount
+        String cardType = params.get("card_type");      // Card/Mobile Banking type
+        String bankTranId = params.get("bank_tran_id"); // Bank Transaction ID
+
+        // Add data to the view
+        model.addAttribute("tranId", tranId);
+        model.addAttribute("amount", amount);
+        model.addAttribute("cardType", cardType);
+        model.addAttribute("bankTranId", bankTranId);
+
+        // TODO: Save transaction details into DB
+
+        return "success";  // success.html view will show details
     }
 
+
     @PostMapping("/payment/fail")
-    public String paymentFail() {
-        return "fail";
+    public String paymentFail(@RequestParam Map<String, String> params, Model model) {
+        // Example fields for failed transactions
+        String tranId = params.get("tran_id");               // Transaction ID
+        String errorReason = params.get("error");            // Failure reason (if available)
+        String failedReason = params.get("failedreason");    // SSLCommerz failure reason
+
+        model.addAttribute("tranId", tranId);
+        model.addAttribute("failedReason", failedReason != null ? failedReason : errorReason);
+
+        // TODO: log/store failed transaction in DB
+
+        return "fail"; // fail.html view will show failure reason
     }
 
     @PostMapping("/payment/cancel")
-    public String paymentCancel() {
+    public String paymentCancel(@RequestParam Map<String, String> params, Model model) {
+        String tranId = params.get("tran_id");
+        model.addAttribute("tranId", tranId);
+
         return "cancel";
     }
 

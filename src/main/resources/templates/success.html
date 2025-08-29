@@ -7,8 +7,8 @@
 <body>
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
+        <div class="col-md-8">
+            <div class="card border-success shadow-lg">
                 <div class="card-body text-center">
                     <div class="text-success mb-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
@@ -17,7 +17,29 @@
                     </div>
                     <h3 class="card-title">Payment Successful!</h3>
                     <p class="card-text">Your transaction has been completed successfully.</p>
-                    <a href="/" class="btn btn-primary">Back to Home</a>
+
+                    <table class="table table-bordered mt-3">
+                        <tbody>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <td th:text="${tranId}">N/A</td>
+                        </tr>
+                        <tr>
+                            <th>Bank Transaction ID</th>
+                            <td th:text="${bankTranId}">N/A</td>
+                        </tr>
+                        <tr>
+                            <th>Amount</th>
+                            <td th:text="${amount}">0.00</td>
+                        </tr>
+                        <tr>
+                            <th>Payment Method</th>
+                            <td th:text="${cardType}">N/A</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <a href="/" class="btn btn-success mt-3">Back to Home</a>
                 </div>
             </div>
         </div>
